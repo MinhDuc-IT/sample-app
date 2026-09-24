@@ -1,0 +1,11 @@
+version: "1"
+triggers:
+  pull_request:
+    enabled: true
+workers:
+  python-tests:
+    enabled: true
+    command: python -m pytest -q
+verdict:
+  fail_on_worker_failure: true
+
