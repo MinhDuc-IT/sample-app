@@ -7,15 +7,12 @@ python -m pip install -r requirements.txt
 python -m pytest -q
 ```
 
-Nhánh `main` nên giữ implementation đúng. Để tạo PR lỗi, tạo branch và đổi `add` thành phép trừ:
+Repo local đã có sẵn hai branch: `main` (pass) và `demo/failing-qc` (fail). Sau khi tạo GitHub repository rỗng:
 
 ```powershell
-git switch -c demo/failing-qc
-# sửa calculator.py: return left - right
-git add calculator.py
-git commit -m "demo: introduce failing test"
+git remote add origin https://github.com/<owner>/<repo>.git
+git push -u origin main
 git push -u origin demo/failing-qc
 ```
 
 Mở Pull Request vào `main`; GitHub App sẽ publish check `Agent-QC` với conclusion `failure`.
-
