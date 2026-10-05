@@ -1,4 +1,7 @@
 __pycache__/
 .pytest_cache/
 *.pyc
-
+*.log
+*.err.log
+*.pid
+keploy-logs.txt

@@ -2,10 +2,41 @@ version: "1"
 triggers:
   pull_request:
     enabled: true
-workers:
-  python-tests:
-    enabled: true
-    command: python -m pytest -q
+quality:
+  functional:
+    unit:
+      enabled: true
+    e2e:
+      enabled: true
+      parameters:
+        feature: |
+          Feature: Calculator API
+
+            Scenario: Add two numbers
+              Given I open the page "http://127.0.0.1:8080/docs"
+              When I perform this user objective: call GET /api/add with a=2 and b=3
+              Then the response should contain result 5
+  integration:
+    service:
+      # Fixture is committed, but Keploy 3.8.58 native replay cannot reliably
+      # launch this SUT on Windows. Enable after switching this worker to Docker.
+      enabled: false
+      parameters:
+        keploy_path: keploy
+        sut_command: python -m uvicorn app:app --port 8081
+  performance:
+    smoke:
+      enabled: true
+      parameters:
+        script_path: performance/k6.js
+        vus: 1
+        duration: 10s
+  security:
+    secrets:
+      enabled: true
+    sca:
+      enabled: true
+    sast:
+      enabled: true
 verdict:
   fail_on_worker_failure: true
-
