@@ -16,3 +16,5 @@ git push -u origin demo/failing-qc
 ```
 
 Mở Pull Request vào `main`; GitHub App sẽ publish check `Agent-QC` với conclusion `failure`.
+
+## Agent-QC full-flow verification
