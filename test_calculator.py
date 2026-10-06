@@ -32,7 +32,7 @@ def test_add_api():
     response = client.get("/api/add", params={"a": 2, "b": 3})
 
     assert response.status_code == 200
-    assert response.json() == {"result": 5}
+    assert response.json() == {"result": 5, "calculation": "addition"}
 
 
 def test_divide_api():

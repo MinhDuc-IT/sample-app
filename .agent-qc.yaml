@@ -18,9 +18,7 @@ quality:
               Then the calculator should display 5
   integration:
     service:
-      # Fixture is committed, but Keploy 3.8.58 native replay cannot reliably
-      # launch this SUT on Windows. Enable after switching this worker to Docker.
-      enabled: false
+      enabled: true
       parameters:
         keploy_path: keploy
         sut_command: python -m uvicorn app:app --port 8081
