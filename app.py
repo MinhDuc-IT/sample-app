@@ -24,8 +24,8 @@ def health() -> dict[str, str]:
 
 
 @app.get("/api/add")
-def api_add(a: int, b: int) -> dict[str, int]:
-    return {"result": add(a, b)}
+def api_add(a: int, b: int) -> dict[str, int | str]:
+    return {"result": add(a, b), "calculation": "addition"}
 
 
 @app.get("/api/divide")
