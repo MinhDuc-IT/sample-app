@@ -1,4 +1,5 @@
 from pathlib import Path
+import time
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
@@ -25,6 +26,7 @@ def health() -> dict[str, str]:
 
 @app.get("/api/add")
 def api_add(a: int, b: int) -> dict[str, int]:
+    time.sleep(0.8)
     return {"result": add(a, b)}
 
 
