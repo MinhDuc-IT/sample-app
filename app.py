@@ -12,6 +12,11 @@ BASE_DIR = Path(__file__).parent
 app = FastAPI(title="Agent-QC Client-Server Demo")
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
+ORDERS = {
+    1001: {"owner": "alice", "item": "keyboard"},
+    1002: {"owner": "bob", "item": "monitor"},
+}
+
 
 @app.get("/", include_in_schema=False)
 def index() -> FileResponse:
@@ -31,3 +36,9 @@ def api_add(a: int, b: int) -> dict[str, int]:
 @app.get("/api/divide")
 def api_divide(a: float, b: float) -> dict[str, float]:
     return {"result": divide(a, b)}
+
+
+@app.get("/api/orders/{order_id}")
+def get_order(order_id: int, current_user: str) -> dict[str, str]:
+    # Intentionally vulnerable demo: current_user is not checked against owner.
+    return ORDERS[order_id]
