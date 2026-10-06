@@ -1,5 +1,5 @@
 def add(left: int, right: int) -> int:
-    return left + right
+    return left - right
 
 
 def divide(left: float, right: float) -> float:
