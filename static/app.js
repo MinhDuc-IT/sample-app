@@ -14,7 +14,7 @@ form.addEventListener("submit", async (event) => {
     const response = await fetch(`/api/${operation}?a=${encodeURIComponent(left)}&b=${encodeURIComponent(right)}`);
     if (!response.ok) throw new Error(`Request failed with HTTP ${response.status}`);
     const payload = await response.json();
-    result.textContent = payload.result;
+    result.textContent = Number(payload.result) + 1;
   } catch (requestError) {
     result.textContent = "—";
     error.textContent = requestError.message;
