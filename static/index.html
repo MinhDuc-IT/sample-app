@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent-QC Calculator</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="calculator" aria-labelledby="calculator-title">
+      <p class="eyebrow">Client–server test target</p>
+      <h1 id="calculator-title">Agent-QC Calculator</h1>
+      <p class="description">Enter two numbers and let the FastAPI server calculate the result.</p>
+
+      <form id="calculator-form">
+        <label for="left">First number</label>
+        <input id="left" name="left" type="number" value="2" required />
+
+        <label for="right">Second number</label>
+        <input id="right" name="right" type="number" value="3" required />
+
+        <div class="actions">
+          <button type="submit" data-operation="add">Add</button>
+          <button type="submit" data-operation="divide">Divide</button>
+        </div>
+      </form>
+
+      <section class="result" aria-live="polite">
+        <span>Result</span>
+        <strong id="result">—</strong>
+      </section>
+      <p id="error" role="alert"></p>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>

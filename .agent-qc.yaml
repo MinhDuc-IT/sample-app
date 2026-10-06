@@ -10,12 +10,12 @@ quality:
       enabled: true
       parameters:
         feature: |
-          Feature: Calculator API
+          Feature: Calculator web client
 
-            Scenario: Add two numbers
-              Given I open the page "http://127.0.0.1:8080/docs"
-              When I perform this user objective: call GET /api/add with a=2 and b=3
-              Then the response should contain result 5
+            Scenario: Add two numbers from the browser
+              Given I open the page "http://127.0.0.1:8080/"
+              When I enter 2 and 3 and choose Add
+              Then the calculator should display 5
   integration:
     service:
       # Fixture is committed, but Keploy 3.8.58 native replay cannot reliably

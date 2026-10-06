@@ -1,18 +1,28 @@
-# Agent-QC sample app
+# Agent-QC client-server sample
 
-Repo Python rất nhỏ dùng để trình diễn Agent-QC pass/fail trên Pull Request.
+Ứng dụng demo gồm:
+
+- Web client HTML/CSS/JavaScript tại `/`.
+- FastAPI server cung cấp `/api/add`, `/api/divide` và `/health`.
+- Unit/API tests bằng pytest.
+- Functional browser scenario cho Hercules.
+- Keploy fixtures cho integration replay.
+- k6 script cho performance smoke test.
+
+## Chạy local
 
 ```powershell
 python -m pip install -r requirements.txt
+python -m uvicorn app:app --host 127.0.0.1 --port 8080
+```
+
+Mở `http://127.0.0.1:8080` và dùng calculator trên trình duyệt.
+
+## Chạy test
+
+```powershell
 python -m pytest -q
 ```
 
-Repo local đã có sẵn hai branch: `main` (pass) và `demo/failing-qc` (fail). Sau khi tạo GitHub repository rỗng:
-
-```powershell
-git remote add origin https://github.com/<owner>/<repo>.git
-git push -u origin main
-git push -u origin demo/failing-qc
-```
-
-Mở Pull Request vào `main`; GitHub App sẽ publish check `Agent-QC` với conclusion `failure`.
+Các branch `demo/*` cố tình đưa từng loại regression riêng biệt vào ứng dụng để
+kiểm tra khả năng phát hiện của từng Agent-QC worker.
