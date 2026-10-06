@@ -1,0 +1,10 @@
+title = "Agent-QC sample rules"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "agent-qc-demo-canary"
+description = "Detect the non-production Agent-QC demonstration canary"
+regex = '''AGENT_QC_DEMO_SECRET_[A-Z0-9]{16}'''
+keywords = ["AGENT_QC_DEMO_SECRET_"]
