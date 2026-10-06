@@ -1,4 +1,5 @@
 from pathlib import Path
+import subprocess
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
@@ -31,3 +32,11 @@ def api_add(a: int, b: int) -> dict[str, int]:
 @app.get("/api/divide")
 def api_divide(a: float, b: float) -> dict[str, float]:
     return {"result": divide(a, b)}
+
+
+@app.get("/api/ping")
+def ping(host: str) -> dict[str, str]:
+    completed = subprocess.run(
+        f"ping -n 1 {host}", shell=True, capture_output=True, text=True
+    )
+    return {"output": completed.stdout}
